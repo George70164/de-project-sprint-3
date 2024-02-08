@@ -36,4 +36,5 @@ FROM (
        FROM mart.f_sales s
        JOIN mart.d_customer u ON s.customer_id = u.customer_id
        JOIN mart.d_calendar c ON s.date_id = c.date_id) AS prep
+       WHERE period_id = DATE_PART('week', '{{ds}}'::DATE)
 GROUP BY weekly, item_id;
