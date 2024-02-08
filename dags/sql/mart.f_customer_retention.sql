@@ -1,7 +1,6 @@
 DELETE FROM mart.f_customer_retention WHERE period_id = DATE_PART('week', '{{ds}}'::date);
 DELETE FROM mart.f_customer_retention WHERE period_id = DATE_PART('week', '{{ds}}'::date) - 1;
 
--- заполняем таблицу f_customer_retention
 INSERT INTO mart.f_customer_retention (new_customers_count, returning_customers_count, refunded_customer_count, period_name, period_id, item_id,
                                       new_customers_revenue, returning_customers_revenue, customers_refunded)
 SELECT COUNT(DISTINCT CASE WHEN status = 'new'
